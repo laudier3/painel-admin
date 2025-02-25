@@ -50,6 +50,13 @@ const FormUpdate = () => {
   const [image4, setImage4] = useState([]);
   const [video, setVideo] = useState([]);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   useEffect(() => {
     (async () => {
       const req = await api.get("/product");
@@ -260,70 +267,6 @@ const FormUpdate = () => {
           title="ATUALIZE UM PRODUTO"
           subtitle="Atualize um produto aqui"
         />
-        <UlLista>
-          {product.map((pro) => {
-            const { id, image, name, price } = pro;
-
-            return (
-              <div className="listagem" key={id}>
-                <button onClick={() => handleCompactar(id)}>
-                  <img src={image[0]} alt="img" className="" />
-                  <p>{name}</p>
-                </button>
-                <div>
-                  <h4>$R {price},00</h4>
-                  <Button variant="primary" onClick={handleShow}>
-                    <h1>
-                      <MdDeleteForever onClick={() => setUserName(id)} />
-                    </h1>
-                  </Button>
-
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body style={{ color: "red", fontSize: 25 }}>
-                      Tem certeza que deja apaga esse produto?
-                      {filterDesc.map((res) => (
-                        <div>
-                          <img
-                            src={res.image[0]}
-                            alt="img"
-                            style={{
-                              width: 150,
-                              height: 150,
-                              display: "flex",
-                              margin: "auto",
-                            }}
-                          />
-                          <h3 style={{ color: "black" }}>{res.name}</h3>
-                        </div>
-                      ))}
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button
-                        className="btn btn-secondary"
-                        onClick={handleClose}
-                      >
-                        Não
-                      </Button>
-                      <Button
-                        className="btn btn-primary"
-                        onClick={() => handleDelete(usename)}
-                      >
-                        Sim
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                </div>
-                <br />
-              </div>
-            );
-          })}
-          <br />
-          <br />
-          <br />
-        </UlLista>
 
         <UlLista></UlLista>
         <form onSubmit={handleFormSubmit}>
@@ -630,6 +573,71 @@ const FormUpdate = () => {
           </Box>
         </form>
       </Box>
+      <b></b><b></b>
+      <UlLista>
+          {product.map((pro) => {
+            const { id, image, name, price } = pro;
+
+            return (
+              <div className="listagem" key={id}>
+                <button onClick={() => handleCompactar(id) || scrollToTop()}>
+                  <img src={image[0]} alt="img" className="" />
+                  <p>{name}</p>
+                </button>
+                <div>
+                  <h4>$R {price},00</h4>
+                  <Button variant="primary" onClick={handleShow}>
+                    <h1>
+                      <MdDeleteForever onClick={() => setUserName(id)} />
+                    </h1>
+                  </Button>
+
+                  <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Modal heading</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{ color: "red", fontSize: 25 }}>
+                      Tem certeza que deja apaga esse produto?
+                      {filterDesc.map((res) => (
+                        <div>
+                          <img
+                            src={res.image[0]}
+                            alt="img"
+                            style={{
+                              width: 150,
+                              height: 150,
+                              display: "flex",
+                              margin: "auto",
+                            }}
+                          />
+                          <h3 style={{ color: "black" }}>{res.name}</h3>
+                        </div>
+                      ))}
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        className="btn btn-secondary"
+                        onClick={handleClose}
+                      >
+                        Não
+                      </Button>
+                      <Button
+                        className="btn btn-primary"
+                        onClick={() => handleDelete(usename)}
+                      >
+                        Sim
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+                </div>
+                <br />
+              </div>
+            );
+          })}
+          <br />
+          <br />
+          <br />
+        </UlLista>
     </>
   );
 };
