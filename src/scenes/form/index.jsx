@@ -111,14 +111,16 @@ const Form = () => {
     };
 
     await api.post("/product", CreateUser).then((res) => {
-      toast.success(`O produto ${CreateUser.name} foi criado com sucesso!`);
+      //toast.success(`O produto ${CreateUser.name} foi criado com sucesso!`);
       //console.log(res.data.id, categoryid.id)
 
       setTimeout(async () => {
         const dataRelations = {
           id_category: `${categoryid.id}`,
-          id_product: `${res.data.id}`,
+          id_product: `${res.data.result.id}`,
         };
+
+        console.log(dataRelations)
 
         //console.log(dataRelations)
 
@@ -129,7 +131,7 @@ const Form = () => {
           })
           .catch((error) => {
             toast.error(`Houve um erro ao criar o relacionamento: ${error}`);
-            console.log(error);
+            //console.log(error);
           });
 
         const Comentario = {
@@ -137,7 +139,7 @@ const Form = () => {
           name: nameUser,
           image: [imageUser0, imageUser1, imageUser2, imageUser3],
           message: msgUser,
-          idProduct: res.data.id,
+          idProduct: res.data.result.id,
           estrela: estrela,
         };
 
@@ -148,7 +150,7 @@ const Form = () => {
           name: nameUser1,
           image: [image1User01, image2User01, image3User01, image4User01],
           message: msgUser1,
-          idProduct: res.data.id,
+          idProduct: res.data.result.id,
           estrela: estrela1,
         };
 
@@ -157,14 +159,14 @@ const Form = () => {
           name: nameUser2,
           image: [image1User02, image2User02, image3User02, image4User02],
           message: msgUser02,
-          idProduct: res.data.id,
+          idProduct: res.data.result.id,
           estrela: estrela02,
         };
         if (Comentario.name) {
           await api.post("/comentario", Comentario).then((response) => {
             const dataRelations2 = {
               id_comentario: `${response.data.comentario.id}`,
-              id_product: `${res.data.id}`,
+              id_product: `${res.data.result.id}`,
             };
 
             //console.log(dataRelations...)
@@ -178,7 +180,7 @@ const Form = () => {
           await api.post("/comentario", Comentario1).then((response) => {
             const dataRelations2 = {
               id_comentario: `${response.data.comentario.id}`,
-              id_product: `${res.data.id}`,
+              id_product: `${res.data.result.id}`,
             };
 
             //console.log(dataRelations)
@@ -192,7 +194,7 @@ const Form = () => {
           await api.post("/comentario", Comentario2).then((response) => {
             const dataRelations2 = {
               id_comentario: `${response.data.comentario.id}`,
-              id_product: `${res.data.id}`,
+              id_product: `${res.data.result.id}`,
             };
 
             //console.log(dataRelations)
@@ -251,8 +253,8 @@ const Form = () => {
               return (
                 <>
                   <li key={id} onClick={() => setCategoryid(res)}>
-                    <img src={image} alt="img" />
-                    <h5>{name}</h5>
+                    <img src={image} alt="img" style={{width: "100%", height: 70}}/>
+                    <h5 style={{fontSize: 16}}>{name}</h5>
                   </li>
                 </>
               );

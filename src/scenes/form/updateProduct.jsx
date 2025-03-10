@@ -135,17 +135,19 @@ const FormUpdate = () => {
   const handleDelete = async (values) => {
     //values.preventDefault()
 
-    handleClose();
+    //handleClose();
 
     const filterProduct = categorypr.filter(
       (reqProduct) => reqProduct.id_product === values
     );
+    
+    console.log(filterProduct);
+
     const filterComentariorelation = comentariorelation.filter(
       (reqProduct) => reqProduct.id_product === values
     );
     //comentariorelation
 
-    console.log(filterProduct[0]);
     //console.log(filterComentariorelation[0].id)
     //console.log(filterComentariorelation[1].id)
     //console.log(filterComentariorelation[2].id)
@@ -160,7 +162,7 @@ const FormUpdate = () => {
         })
         .catch((error) => {
           toast.error(
-            `Houve um erro ao cadastra o produto, referente a: ${error}`
+            `Houve um erro ao deleta o produto, referente a: ${error}`
           );
           console.log(error);
         });
@@ -208,7 +210,7 @@ const FormUpdate = () => {
         console.log(error);
       });
 
-    //console.log(CreteUser[0])
+    //console.log(CreteUser[0])*/
   };
 
   const handleFormSubmit = async (values) => {
@@ -581,7 +583,7 @@ const FormUpdate = () => {
             return (
               <div className="listagem" key={id}>
                 <button onClick={() => handleCompactar(id) || scrollToTop()}>
-                  <img src={image[0]} alt="img" className="" />
+                  <img src={image[0]} alt="img" style={{marginTop: "-30px"}} />
                   <p>{name}</p>
                 </button>
                 <div>

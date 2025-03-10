@@ -173,13 +173,13 @@ const FormUpdate = () => {
   const handleDelete = async (values) => {
     //values.preventDefault()
 
-    fecharModal()
+    //fecharModal()
 
-    const filterProduct = categorypr.filter(reqProduct => (reqProduct.id_product === values))
-    const filterComentariorelation = comentariorelation.filter(reqProduct => (reqProduct.id_product === values))
+    const filterProduct = categorypr.filter(reqProduct => reqProduct.id_product === values)
+    const filterComentariorelation = comentariorelation.filter(reqProduct => reqProduct.id_product === values)
     //comentariorelation
 
-    console.log(filterProduct)
+    console.log(filterProduct, filterComentariorelation)
     //console.log(filterComentariorelation[0].id)
     //console.log(filterComentariorelation[1].id)
     //console.log(filterComentariorelation[2].id)

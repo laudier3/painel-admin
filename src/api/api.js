@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: "https://apinonshops.store"
+  baseURL: "https://apinonshops.store"
+    //@ts-expect-errorbaseURL: "http://localhost:3003"
     //baseURL: "https://api-pensamdoemmim.onrender.com"
-    //baseURL: "https://apinonshops.store"
     //baseURL: "http://localhost:3003" //"https://api-store-stylestop.onrender.com" // //"https://api-store-v4bm.onrender.com"
 })
 
