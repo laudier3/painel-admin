@@ -1,10 +1,12 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: "https://apinonshops.store"
-    //@ts-expect-errorbaseURL: "http://localhost:3003"
-    //baseURL: "https://api-pensamdoemmim.onrender.com"
-    //baseURL: "http://localhost:3003" //"https://api-store-stylestop.onrender.com" // //"https://api-store-v4bm.onrender.com"
+  baseURL: "https://app1.apinonshops.store",
+  headers: {
+    Authorization: 'Bearer qGtfMJAAPMpu3B50e2X3tRzWDAhFUcfWoCXwe9AFVgkx6cTiqysOWTZ', // or 'Token YOUR_TOKEN'
+    'Content-Type': 'application/json',
+  },
+
 })
 
 export default api;
